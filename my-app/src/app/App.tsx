@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { useLoaderData, useSearchParams } from 'react-router-dom'
+import Breadcrumb from './components/Breadcrumb'
 
 type category = {
   id : string,
@@ -85,7 +86,7 @@ function App() {
   }
 
   return (
-    <>
+  <main className="flex h-screen">
     <section className="bg-gray-100 w-[30%] h-full border-r-2 border-gray-200">
         <div className="flex gap-4 flex-col p-10">
           <div className="flex justify-center gap-2 items-center mb-5">
@@ -174,8 +175,10 @@ function App() {
             <button onClick={()=>reset()} className="mt-5 text-gray-500 font-bold tracking-wider py-3.5 rounded-xl border-1 border-blue-500">RESET</button>
           </form>
         </div>
-      </section>
-    </>
+    </section>
+
+    <Breadcrumb/>
+  </main>
   )
 }
 
