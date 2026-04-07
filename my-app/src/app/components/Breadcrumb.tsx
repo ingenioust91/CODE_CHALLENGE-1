@@ -1,26 +1,24 @@
-import { useLoaderData, useSearchParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import type { brand, category, product, resultType, subCategory } from "../types/types";
 
-type category = {
-  id : string,
-  name : string
-}
-
-function Breadcrumb() {
-  const [searchParams] = useSearchParams();
+function Breadcrumb({categoryId, subCategoryId, brandId, productId} : resultType) {
   const allproducts = useLoaderData()
-  const categoryId = searchParams.get('category')
-  const category : category = allproducts.categories.filter((c : any)=> c.id == categoryId)
-    console.log('CAT',category)
+  const category : category = allproducts.categories.find((c : any)=> c.id == categoryId)
+  const subCategory : subCategory = allproducts.subCategories.find((c : any)=> c.id == subCategoryId)
+  const brand : brand = allproducts.brands.find((c : any)=> c.id == brandId)
+  const product : product = allproducts.products.find((c : any)=> c.id == productId)
   return (
     <>
-    <section className="flex flex-col w-[70%] h-screen">
-        {/* ----BREADCRUMB---- */}
-        <section className="h-[10%] flex text-sm text-blue-500 gap-5 border-b-2 border-gray-200 p-5">
-            <p>Filter Products</p>
-        
-            <p>cat {category.name}</p>
+    <section className="h-[10%] flex text-sm text-blue-500 gap-3 border-b-2 border-gray-200 p-5">
+      <p className="font-bold">Filter Products</p>
+      { category && <p>{category.name} ❯</p>}
 
-        </section>
+      { subCategory && <p>{subCategory.name} ❯</p>}
+
+      { brand && <p>{brand.name} ❯</p>}
+
+      { product && <p>{product.name}</p>}
+
     </section>
     </>
   )

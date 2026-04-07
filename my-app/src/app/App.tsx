@@ -2,29 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import { useLoaderData, useSearchParams } from 'react-router-dom'
 import Breadcrumb from './components/Breadcrumb'
-
-type category = {
-  id : string,
-  name : string
-}
-
-type subCategory = {
-  id : string,
-  categoryId : string,
-  name : string
-}
-
-type brand = {
-  id : string,
-  subCategoryId : string,
-  name : string
-}
-
-type product  = {
-  id : string,
-  brandId : string,
-  name : string
-}
+import Result from './components/Result'
+import type { brand, category, product, subCategory } from './types/types'
 
 function App() {
   const allproducts = useLoaderData()
@@ -82,7 +61,7 @@ function App() {
     setSelectedSubCategory('')
     setSelectedBrand('')
     setSelectedProduct('')
-    setSearchParams()
+    setSearchParams({});
   }
 
   return (
@@ -177,7 +156,12 @@ function App() {
         </div>
     </section>
 
-    <Breadcrumb/>
+    <section className="w-[70%] h-screen flex flex-col">
+      <Breadcrumb aria-label="breadcrumb" categoryId={selectedCategory} subCategoryId={selectedSubCategory}
+              brandId={selectedBrand} productId={selectedProduct}/>
+      <Result aria-label="result" categoryId={selectedCategory} subCategoryId={selectedSubCategory}
+              brandId={selectedBrand} productId={selectedProduct}/>
+    </section>
   </main>
   )
 }
