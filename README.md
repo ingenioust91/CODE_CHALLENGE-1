@@ -130,7 +130,11 @@ Relasi data:
 
 ### 6. Data Loading
 
-* Menggunakan **React Router loader** src/app/router/router.tsx
+* Menggunakan **React Router loader** 
+
+```
+src/app/router/router.tsx
+```
 
 ```ts
 const router = createBrowserRouter([
