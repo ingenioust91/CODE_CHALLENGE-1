@@ -38,7 +38,12 @@ function Result({categoryId, subCategoryId, brandId, productId} : resultType) {
             <p className="text-gray-200 text-3xl">↓</p>
 
             <p className="text-xs text-blue-500 tracking-widest">PRICE</p>
-            <p className='text-3xl font-bold min-h-10'>IDR {product.price}</p>
+            <p className='text-3xl font-bold min-h-10'>
+                {product.price.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0 // Optional: hides decimals (.00)
+                })}</p>
         </div> }
           
     </section>
