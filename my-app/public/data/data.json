@@ -20,13 +20,21 @@
     { "id": "B8", "subCategoryId": "S4", "name": "Adidas" }
   ],
   "products": [
-    { "id": "P1", "brandId": "B1", "name": "Asus ROG Zephyrus", "price": 25000000 },
-    { "id": "P2", "brandId": "B2", "name": "MacBook Pro M3", "price": 30000000 },
-    { "id": "P3", "brandId": "B3", "name": "Samsung Galaxy S24", "price": 15000000 },
-    { "id": "P4", "brandId": "B4", "name": "Xiaomi 14 Pro", "price": 12000000 },
-    { "id": "P5", "brandId": "B5", "name": "Erigo T-Shirt Black", "price": 150000 },
-    { "id": "P6", "brandId": "B6", "name": "Uniqlo Flannel Shirt", "price": 399000 },
-    { "id": "P7", "brandId": "B7", "name": "Nike Air Force 1", "price": 1500000 },
-    { "id": "P8", "brandId": "B8", "name": "Adidas Ultraboost", "price": 2800000 }
-  ]
+  { "id": "P1", "brandId": "B1", "name": "Asus ROG Zephyrus", "price": 25000000 },
+  { "id": "P2", "brandId": "B2", "name": "MacBook Pro M3", "price": 30000000 },
+  { "id": "P3", "brandId": "B3", "name": "Samsung Galaxy S24", "price": 15000000 },
+  { "id": "P4", "brandId": "B4", "name": "Xiaomi 14 Pro", "price": 12000000 },
+  { "id": "P5", "brandId": "B5", "name": "Erigo T-Shirt Black", "price": 150000 },
+  { "id": "P6", "brandId": "B6", "name": "Uniqlo Flannel Shirt", "price": 399000 },
+  { "id": "P7", "brandId": "B7", "name": "Nike Air Force 1", "price": 1500000 },
+  { "id": "P8", "brandId": "B8", "name": "Adidas Ultraboost", "price": 2800000 },
+  { "id": "P9", "brandId": "B1", "name": "Asus TUF Gaming F15", "price": 18000000 },
+  { "id": "P10", "brandId": "B2", "name": "MacBook Air M2", "price": 18000000 },
+  { "id": "P11", "brandId": "B3", "name": "Samsung Galaxy Tab S9", "price": 13000000 },
+  { "id": "P12", "brandId": "B4", "name": "Xiaomi Redmi Note 13", "price": 3500000 },
+  { "id": "P13", "brandId": "B5", "name": "Erigo Hoodie Grey", "price": 250000 },
+  { "id": "P14", "brandId": "B6", "name": "Uniqlo Basic T-Shirt White", "price": 199000 },
+  { "id": "P15", "brandId": "B7", "name": "Nike Dunk Low", "price": 1700000 },
+  { "id": "P16", "brandId": "B8", "name": "Adidas Samba OG", "price": 2200000 }
+]
 }

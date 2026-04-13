@@ -1,51 +1,55 @@
 import { useLoaderData } from "react-router-dom"
 import type { brand, category, product, resultType, subCategory } from "../types/types"
+import ProductCard from "./ProductCard"
+import { useEffect, useState } from "react"
+
 
 function Result({categoryId, subCategoryId, brandId, productId} : resultType) {
   const allproducts = useLoaderData()
-  const category : category = allproducts.categories.find((c : any)=> c.id == categoryId)
-  const subCategory : subCategory = allproducts.subCategories.find((c : any)=> c.id == subCategoryId) 
-  const brand : brand = allproducts.brands.find((c : any)=> c.id == brandId)
-  const product : product = allproducts.products.find((c : any)=> c.id == productId)
+  const [showResult, setShowResult] = useState<product[]>(allproducts.products)
+
+  useEffect(()=>{
+    let result: product[] = allproducts.products
+
+    if(categoryId){
+      const category : category[] = allproducts.categories.filter((c : category)=> c.id == categoryId)
+      const subCategory : subCategory[] = allproducts.subCategories.filter((sc : subCategory)=> category.some((c:category)=>c.id == sc.categoryId)) 
+      const brand : brand[] = allproducts.brands.filter((b:brand)=>subCategory.some((sb:subCategory)=>sb.id == b.subCategoryId))
+      const product : product[] = allproducts.products.filter((p : product)=> brand.some((b:brand)=>b.id == p.brandId))
+      result = product
+    }
+
+    if(subCategoryId){
+      const subCategory : subCategory[] = allproducts.subCategories.filter((sc : subCategory)=> sc.id == subCategoryId) 
+      const brand : brand[] = allproducts.brands.filter((b:brand)=>subCategory.some((sb:subCategory)=>sb.id == b.subCategoryId))
+      const product : product[] = allproducts.products.filter((p : product)=> brand.some((b:brand)=>b.id == p.brandId))
+      result = product  
+    }
+
+    if(brandId){
+      const brand : brand[] = allproducts.brands.filter((b:brand)=>b.id == brandId)
+      const product : product[] = allproducts.products.filter((p : product)=> brand.some((b:brand)=>b.id == p.brandId))
+      result = product 
+    }
+
+    if(productId){
+      const product : product[] = allproducts.products.filter((p : product)=> p.id == productId)
+      result = product 
+    }
+    setShowResult(result)
+  },[categoryId, subCategoryId, brandId, productId])
+  
 
   return (
-    <section className="bg-gray-100 h-[90%] flex gap-6 flex-col w-full items-center justify-center">
-        {category &&
-        <div className="flex flex-col items-center justify-center">
-            <p className="text-xs text-blue-500 tracking-widest">CATEGORY</p>
-            <p className='text-3xl font-bold min-h-10'>{category.name}</p>
-            <p className="text-gray-200 text-3xl">↓</p>
-        </div> }
+    <section className="bg-gray-100 h-[90%] p-5 w-full items-center justify-center">
+        <div className="flex flex-wrap gap-2">
+           
+        {showResult.length > 0 && showResult.map((x: any) => (
+            <ProductCard key={x.id} name={x.name} price={x.price} />
+            ))}
 
-        {subCategory &&
-        <div className="flex flex-col items-center justify-center">
-            <p className="text-xs text-blue-500 tracking-widest">SUB CATEGORY</p>
-            <p className='text-3xl font-bold min-h-10'>{subCategory.name}</p>
-            <p className="text-gray-200 text-3xl">↓</p>
-        </div> }
-
-        {brand &&
-        <div className="flex flex-col items-center justify-center">
-            <p className="text-xs text-blue-500 tracking-widest">BRAND</p>
-            <p className='text-3xl font-bold min-h-10'>{brand.name}</p>
-            <p className="text-gray-200 text-3xl">↓</p>
-        </div> }
-
-        {product &&
-        <div className="flex flex-col items-center justify-center">
-            <p className="text-xs text-blue-500 tracking-widest">PRODUCT</p>
-            <p className='text-3xl font-bold min-h-10'>{product.name}</p>
-            <p className="text-gray-200 text-3xl">↓</p>
-
-            <p className="text-xs text-blue-500 tracking-widest">PRICE</p>
-            <p className='text-3xl font-bold min-h-10'>
-                {product.price.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR',
-                        minimumFractionDigits: 0 // Optional: hides decimals (.00)
-                })}</p>
-        </div> }
-          
+           
+        </div>
     </section>
 
   )
